@@ -11,13 +11,13 @@ app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//  Step 1: Set the view engine to pug
+// Step 1: Set the view engine to Pug
 app.set('view engine', 'pug');
 
-//  Step 2: Set the views directory
+// Step 2: Set the views directory
 app.set('views', './views/pug');
 
-//  Step 3: Render the pug template on home route
+// Step 3: Render the Pug template on the home route
 app.get('/', (req, res) => {
   res.render('index', {
     title: 'Hello from Pug!',
