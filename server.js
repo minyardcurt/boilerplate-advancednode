@@ -18,7 +18,7 @@ app.set('view engine', 'pug');
 app.set('views', './views/pug');
 
 //  Step 3: Render the pug template on home route
-app.route('/').get((req, res) => {
+app.get((req, res) => {
   res.render('index', {
     title: 'Hello from Pug!',
     message: 'Pug template successfully rendered!',
