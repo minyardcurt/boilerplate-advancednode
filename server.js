@@ -6,13 +6,26 @@ const fccTesting = require('./freeCodeCamp/fcctesting.js');
 
 const app = express();
 
-fccTesting(app); //For FCC testing purposes
+fccTesting(app); // For FCC testing purposes
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.route('/').get((req, res) => {
+//  Step 1: Set the view engine to pug
+app.set('view engine', 'pug');
 
+//  Step 2: Set the views directory
+app.set('views', './views/pug');
+
+//  Step 3: Render the pug template on home route
+app.route('/').get((req, res) => {
+  res.render('index', {
+    title: 'Hello from Pug!',
+    message: 'Pug template successfully rendered!',
+    showLogin: false,
+    showRegistration: false,
+    showSocialAuth: false
+  });
 });
 
 const PORT = process.env.PORT || 3000;
