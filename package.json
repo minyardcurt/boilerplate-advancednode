@@ -1,8 +1,7 @@
 {
   "name": "fcc-advanced-node-and-express",
-  "author": "http://github.com/JosephLivengood",
   "version": "0.0.1",
-  "description": "What am I about?",
+  "description": "FCC Advanced Node and Express",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -30,8 +29,10 @@
     "passport",
     "socketio"
   ],
-  "license": "MIT",
-  "devDependencies": {
+   "devDependencies": {
     "nodemon": "^2.0.4"
-  }
+  },
+  "author": "Curt Minyard",
+  "license": "MIT"
+ 
 }
