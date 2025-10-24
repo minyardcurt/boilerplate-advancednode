@@ -27,11 +27,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.head('/', (req, res) => {
-  console.log('[HEAD REQUEST] /');
-  res.status(200).end();
-});
-
 // Step 3: Render the Pug template on the home route
 app.get('/', (req, res) => {
   console.log('[ROUTE] Home route hit - rendering Pug template...');
