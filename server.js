@@ -9,6 +9,7 @@ const app = express();
 // For FCC testing
 fccTesting(app);
 
+// Serve static files and parse JSON/form data
 app.use('/public', express.static(process.cwd() + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,7 +28,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Step 3: Render the Pug template on the home route
+// Step 3: Handle HEAD requests (required by FCC tests)
+app.head('/', (req, res) => {
+  console.log('[HEAD REQUEST] /');
+  res.status(200).end();
+});
+
+// Step 4: Render the Pug template on the home route
 app.get('/', (req, res) => {
   console.log('[ROUTE] Home route hit - rendering Pug template...');
   try {
@@ -45,6 +52,7 @@ app.get('/', (req, res) => {
   }
 });
 
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`[SERVER] Listening on port ${PORT}`);
