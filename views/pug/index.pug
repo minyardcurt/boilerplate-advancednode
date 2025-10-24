@@ -8,15 +8,13 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='/public/style.css')
   body
-    // FCC expects the main message in an h1 element
+    // FCC requires an h1 with the message variable directly
     h1= message
-    
-    // Extra content preserved
-    h1.border.center FCC Advanced Node and Express
-    h2.center#pug-success-message
-      | Looks like this page is being rendered from Pug into HTML!
-      | #{title}
-    
+
+    // Optional text and other elements
+    h2 Looks like this page is being rendered from Pug into HTML!
+    h3 Pug variable title: #{title}
+
     if showLogin
       hr
       h2.center Login Form
@@ -29,7 +27,7 @@ html
           input(type='password', name='password')
         div
           input(type='submit', value='Log In')
-          
+
     if showRegistration
       hr
       h2.center Registration Form
