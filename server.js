@@ -1,24 +1,29 @@
+// server.js
 'use strict';
-require('dotenv').config();
+
 const express = require('express');
-const myDB = require('./connection');
-const fccTesting = require('./freeCodeCamp/fcctesting.js');
-
 const app = express();
+const path = require('path');
 
+// Set Pug as the view engine
 app.set('view engine', 'pug');
-app.set('views', './views/pug');
-fccTesting(app); // For fCC testing purposes
-app.use('/public', express.static(process.cwd() + '/public'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-app.route('/').get((req, res) => {
-  // Change the response to render the Pug template
-  res.render('index');
+// Set the directory where Pug templates are located
+app.set('views', path.join(__dirname, 'views/pug'));
+
+// Serve static files (optional but often required in FCC projects)
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// Root route — render index.pug with a message variable
+app.get('/', (req, res) => {
+  res.render('index', { title: 'Home Page', message: 'Hello Pug!' });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
+// Export app for testing (important for FCC test suite)
+module.exports = app;
+
+// Start server (only if run directly, not during testing)
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
+}
