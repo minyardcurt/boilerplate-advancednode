@@ -5,6 +5,12 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+//Logging Middleware
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 // Set Pug as the view engine
 app.set('view engine', 'pug');
 
