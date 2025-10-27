@@ -6,7 +6,16 @@ const path = require('path');
 const app = express();
 
 // -----------------------------
-// FCC testing CORS setup
+// FCC testing middleware
+// -----------------------------
+if (process.env.NODE_ENV === 'test' || process.env.FCC_TEST) {
+  console.log('FCC testing enabled');
+  const fccTesting = require('./fcctesting.js');
+  fccTesting(app);
+}
+
+// -----------------------------
+// CORS for FCC testing
 // -----------------------------
 const allowedOrigins = [
   /^https?:\/\/([\w-]+\.)*freecodecamp.org/,
