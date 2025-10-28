@@ -77,14 +77,13 @@ app.get('/', (req, res) => {
 });
 
 // -----------------------------
-// Export app for FCC testing
-// -----------------------------
-module.exports = app;
-
-// -----------------------------
 // Start server only if run directly
 // -----------------------------
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
 }
+// -----------------------------
+// Export app for FCC testing
+// -----------------------------
+module.exports = app;
