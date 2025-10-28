@@ -8,7 +8,6 @@ const app = express();
 // -----------------------------
 // FCC testing middleware
 // -----------------------------
-
 if (process.env.NODE_ENV === 'test' || process.env.FCC_TEST) {
   console.log('FCC testing enabled');
   const fccTesting = require('./fcctesting.js');
@@ -41,7 +40,9 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
   res.on('finish', () => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl} => ${res.statusCode}`);
+    console.log(
+      `[${new Date().toISOString()}] ${req.method} ${req.originalUrl} => ${res.statusCode}`
+    );
   });
   next();
 });
@@ -56,6 +57,17 @@ app.set('views', path.join(__dirname, 'views/pug'));
 // Serve static files
 // -----------------------------
 app.use('/public', express.static(path.join(__dirname, 'public')));
+
+// -----------------------------
+// Required FCC API endpoints
+// -----------------------------
+app.get('/_api/package.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'package.json'));
+});
+
+app.get('/_api/app', (req, res) => {
+  res.json({ status: 'OK', app: 'Express app is running' });
+});
 
 // -----------------------------
 // Root route
