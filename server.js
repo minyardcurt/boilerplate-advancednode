@@ -9,9 +9,11 @@ const app = express();
 // FCC testing middleware
 // -----------------------------
 
+if (process.env.NODE_ENV === 'test' || process.env.FCC_TEST) {
   console.log('FCC testing enabled');
   const fccTesting = require('./fcctesting.js');
   fccTesting(app);
+}
 
 // -----------------------------
 // CORS for FCC testing
